@@ -21,5 +21,5 @@ def sum_victories():
 
 
 def nickname():
-    return response.gert('name')
+    return response.get('name')
 

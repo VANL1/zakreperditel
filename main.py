@@ -1,5 +1,4 @@
 import telebot
-
 import bs_api
 import config
 from random import randint
@@ -19,17 +18,18 @@ def start(message):
         bot.send_photo(message.chat.id, photo=open('photo.png', 'rb'))
     elif '/trophies' in message.text:
         bot.send_message(message.chat.id,
-                         f'Сигма игрок в бравл старс {bs_api.nickname()} сейчас имеет {bs_api.trophies()} кубков')
+                         f'Сигма игрок в бравл старс {bs_api.nickname()} сейчас имеет \033{bs_api.trophies()}\033 кубков')
     elif '/victories' in message.text:
         bot.send_message(message.chat.id, f'Сигма игрок в бравл старс {bs_api.nickname()} сейчас имеет:\n'
                                           f'{bs_api.victories()[0]} побед в соло шд\n'
                                           f'{bs_api.victories()[1]} побед в дуо шд\n'
                                           f'{bs_api.victories()[2]} побед в 3 на 3')
     elif '/total_sigma' in message.text:
-        bot.send_message(message.text.id,
-                         f'{bs_api.nickname()} НСТОЛЬКО СИГМА, ЧТО У НЕГО {bs_api.trophies()} КУБУОВ f{bs_api.victories()[0]} ПОБЕД В СОЛО ШД,'
-                         f'{bs_api.victories()[1]} ПОБЕД В ДУО ШД И'
-                         f'{bs_api.victories()[2]} ПОБЕД 3 НА 3, А СУММАРНО У НЕГО {bs_api.sum_victories()} ПОБЕД')
+        bot.send_message(message.chat.id,
+                         f'{bs_api.nickname()} НСТОЛЬКО СИГМА, ЧТО У НЕГО {bs_api.trophies()} КУБУОВ {bs_api.victories()[0]} ПОБЕД В СОЛО ШД,'
+                         f'{bs_api.victories()[1]} ПОБЕД В ДУО ШД И '
+                         f'{bs_api.victories()[2]} ПОБЕД B 3 НА 3, А СУММАРНО У НЕГО {bs_api.sum_victories()} ПОБЕД')
+        bot.send_message(message.chat.id, 'ЕБАТЬ ОН СИГМА')
 
 
 @bot.message_handler(content_types=['text'])
@@ -38,7 +38,7 @@ def what(message):
         sleep(2)
         bot.reply_to(message, "Паташти, йа ни такафарил")
         sleep(3)
-        bot.reply_to(message, 'ЖОПА ПАНОС КАВНО')
+        bot.send_message(message.chat.id, 'ЖОПА ПАНОС КАВНО')
 
 
 @bot.message_handler(content_types=['poll'])
